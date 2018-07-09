@@ -6,6 +6,22 @@ import 'mdbreact/dist/css/mdb.css';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import RootStore from './redux/combineStores'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(
+    RootStore,
+    applyMiddleware(
+        thunk
+    )
+)
+
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('root'));
 registerServiceWorker();
