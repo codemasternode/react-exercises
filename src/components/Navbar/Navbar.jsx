@@ -1,31 +1,34 @@
 import React from 'react'
-import { Navbar, NavbarBrand } from 'mdbreact'
-
-
-
+import { Navbar, NavbarBrand, Container, NavbarNav } from 'mdbreact'
 
 const NavbarAuthenticated = (props) => (
-    <Navbar color="indigo" dark>
-        <NavbarBrand href="#">
-            Authenticated
-        </NavbarBrand>
+    <Navbar color="black">
+        <Container>
+            <NavbarBrand>
+                Brand
+            </NavbarBrand>
+            <NavbarNav right>
+                {props.user}
+            </NavbarNav>
+        </Container>
     </Navbar>
 )
 
 const NavbarUnAuthenticated = () => (
-    <Navbar color="indigo" dark>
-        <NavbarBrand href="#">
-            UnAuthenticated
-        </NavbarBrand>
+    <Navbar color="black">
+        <Container>
+            <NavbarBrand>
+                Brand
+            </NavbarBrand>
+        </Container>
     </Navbar>
 )
 
 const NavbarHOC = (test, Authenticated, UnAuthenticated) => props => (
-    test ? <Authenticated /> : <UnAuthenticated />
+    test ? <Authenticated {...props} /> : <UnAuthenticated />
 )
 
 
 const test = true
-const result = () => NavbarHOC(test, NavbarAuthenticated, NavbarUnAuthenticated)({ test })
-
+const result = () => NavbarHOC(test, NavbarAuthenticated, NavbarUnAuthenticated)({ user: 'Marcin' })
 export default result
