@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, NavbarBrand, Container, NavbarNav } from 'mdbreact'
 import { NavbarHOC } from './NavbarHOC'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function mapStateToProps({ loginStore }) {
     return {
@@ -16,7 +17,9 @@ const NavbarAuthenticated = (props) => (
                 Brand
             </NavbarBrand>
             <NavbarNav right>
-                {props.loginStore.user}
+                <Link to="/dashboard">
+                    {props.loginStore.user}
+                </Link>
             </NavbarNav>
         </Container>
     </Navbar>
@@ -29,7 +32,7 @@ const NavbarUnAuthenticated = (props) => (
                 Brand
             </NavbarBrand>
             <NavbarNav right>
-                
+
             </NavbarNav>
         </Container>
     </Navbar>
